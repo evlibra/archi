@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SVG Image Export
 Bundle-SymbolicName: com.archimatetool.export.svg;singleton:=true
-Bundle-Version: 5.0.0.qualifier
+Bundle-Version: 5.0.2.qualifier
 Bundle-Activator: com.archimatetool.export.svg.ExportSVGPlugin
 Bundle-Vendor: Archi
 Bundle-Localization: plugin
@@ -11,7 +11,7 @@ Eclipse-ExtensibleAPI: true
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  com.archimatetool.editor
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: com.archimatetool.export.svg.jar,
  lib/batik-all-1.11.jar,

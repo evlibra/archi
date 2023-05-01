@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Archi" uid="com.archimatetool.editor.product" id="com.archimatetool.editor.product" application="com.archimatetool.editor.app" version="5.0.0.qualifier" useFeatures="true" includeLaunchers="true" autoIncludeRequirements="true">
+<product name="Archi" uid="com.archimatetool.editor.product" id="com.archimatetool.editor.product" application="com.archimatetool.editor.app" version="5.0.2.qualifier" useFeatures="true" includeLaunchers="true" autoIncludeRequirements="true">
 
    <configIni use="">
    </configIni>
@@ -15,14 +15,14 @@ openFile
 @user.home/.archi/secure_storage
       </programArgsLin>
       <programArgsMac>-vm
-../jre
+../jre/lib/libjli.dylib
 -eclipse.keyring
 &quot;@user.home/Library/Application Support/Archi/secure_storage&quot;
       </programArgsMac>
       <programArgsWin>-eclipse.keyring
 @user.home/AppData/Roaming/Archi/secure_storage
       </programArgsWin>
-      <vmArgs>-Dosgi.requiredJavaVersion=11
+      <vmArgs>-Dosgi.requiredJavaVersion=17
 -Declipse.p2.data.area=@config.dir/p2
 -Ddata.location=@user.home/Documents/Archi
 --add-modules=ALL-SYSTEM
@@ -43,7 +43,7 @@ openFile
       </vmArgsWin>
    </launcherArgs>
 
-   <windowImages i16="/com.archimatetool.editor/img/app-16.png" i32="/com.archimatetool.editor/img/app-32.png" i48="/com.archimatetool.editor/img/app-48.png" i64="/com.archimatetool.editor/img/app-64.png" i128="/com.archimatetool.editor/img/app-128.png" i256="/com.archimatetool.editor/img/app-256.png"/>
+   <windowImages i16="/com.archimatetool.editor/img/app-16.png" i32="/com.archimatetool.editor/img/app-32.png" i48="/com.archimatetool.editor/img/app-48.png"/>
 
    <splash
       location="com.archimatetool.editor" />

@@ -1,8 +1,9 @@
 name: Archi Product Integration Build
 
 on:
- schedule:
-   - cron: '0 8 * * 1,4'
+  workflow_dispatch:
+#  schedule:
+#    - cron: '0 8 * * 1,4'
 
 jobs:
   integration-build:
@@ -33,6 +34,10 @@ jobs:
         cp .github/toolchains.xml ~/.m2/toolchains.xml
         xvfb-run mvn -V clean verify -P tests,product
 
+    - name: Today's date
+      run: |
+        echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
     - name: Deploy to release
       uses: xresloader/upload-to-github-release@v1
       env:
@@ -40,3 +45,5 @@ jobs:
       with:
         file: "com.archimatetool.editor.product/target/products/Archi-*.*"
         prerelease: true
+        overwrite: true
+        tag_name: integration-build-${{ env.DATE }}

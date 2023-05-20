@@ -76,6 +76,9 @@ public class ArchimateDiagramModelFactory implements ICreationFactory {
         IDiagramModelArchimateConnection connection = IArchimateFactory.eINSTANCE.createDiagramModelArchimateConnection();
         connection.setArchimateRelationship(relation);
         
+        IGraphicalObjectUIProvider provider = (IGraphicalObjectUIProvider)ObjectUIFactory.INSTANCE.getProvider(connection);
+        connection.setTextAlignment(provider.getDefaultTextAlignment());
+        
         // Set user default colors as set in prefs
         ColorFactory.setDefaultColors(connection);
         
@@ -155,7 +158,7 @@ public class ArchimateDiagramModelFactory implements ICreationFactory {
         IGraphicalObjectUIProvider provider = (IGraphicalObjectUIProvider)ObjectUIFactory.INSTANCE.getProvider(object);
 
         if(object instanceof ITextAlignment) {
-            ((IDiagramModelObject)object).setTextAlignment(provider.getDefaultTextAlignment());
+            ((ITextAlignment)object).setTextAlignment(provider.getDefaultTextAlignment());
         }
                 
         if(object instanceof ITextPosition) {

@@ -22,6 +22,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.ImageLoader;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.PlatformUI;
 
 import com.archimatetool.editor.diagram.util.DiagramUtils;
 import com.archimatetool.editor.ui.ImageFactory;
@@ -172,17 +173,13 @@ public class JasperReportsExporter {
         for(IDiagramModel dm : diagramModels) {
             setProgressSubTask(NLS.bind(Messages.JasperReportsExporter_1, i++, total));
             
-            Image[] image = new Image[1];
+            Image image = null;
             
             try {
-                // Image creation must be done in a UI thread
-                Display.getDefault().syncExec(() -> {
-                    image[0] = DiagramUtils.createImage(dm, 1, 10);
-                });
-                
+                image = DiagramUtils.createImage(dm, 1, 10);
                 String diagramName = dm.getId() + ".png"; //$NON-NLS-1$
                 ImageLoader loader = new ImageLoader();
-                loader.data = new ImageData[] { image[0].getImageData(ImageFactory.getImageDeviceZoom()) };
+                loader.data = new ImageData[] { image.getImageData(ImageFactory.getImageDeviceZoom()) };
                 File file = new File(tmpFolder, diagramName);
                 loader.save(file.getAbsolutePath(), SWT.IMAGE_PNG);
             }
@@ -191,8 +188,8 @@ public class JasperReportsExporter {
                         (t.getMessage() == null ? t.toString() : t.getMessage()), t);
             }
             finally {
-                if(image[0] != null) {
-                    image[0].dispose();
+                if(image != null) {
+                    image.dispose();
                 }
             }
         }
@@ -301,6 +298,10 @@ public class JasperReportsExporter {
             
             if(progressMonitor.isCanceled()) {
                 throw new CancelledException();
+            }
+            
+            if(PlatformUI.isWorkbenchRunning() && Display.getCurrent() != null) {
+                while(Display.getCurrent().readAndDispatch());
             }
         }
     }

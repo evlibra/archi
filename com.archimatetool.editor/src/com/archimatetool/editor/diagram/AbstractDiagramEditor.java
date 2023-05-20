@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -74,6 +73,7 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackAdapter;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -133,6 +133,7 @@ import com.archimatetool.editor.diagram.tools.MouseWheelHorizontalScrollHandler;
 import com.archimatetool.editor.model.DiagramModelUtils;
 import com.archimatetool.editor.preferences.IPreferenceConstants;
 import com.archimatetool.editor.ui.ArchiLabelProvider;
+import com.archimatetool.editor.ui.ThemeUtils;
 import com.archimatetool.editor.ui.findreplace.IFindReplaceProvider;
 import com.archimatetool.editor.ui.services.ComponentSelectionManager;
 import com.archimatetool.editor.ui.services.EditorManager;
@@ -366,8 +367,11 @@ implements IDiagramModelEditor, IContextProvider, ITabbedPropertySheetPageContri
         // Set CSS class name
         viewer.getControl().setData("org.eclipse.e4.ui.css.CssClassName", "ArchiFigureCanvas"); //$NON-NLS-1$ //$NON-NLS-2$
         
-        // Set background color in case theming is disabled
-        viewer.getControl().setBackground(new Color(255, 255, 255));
+        // Set background color in case CSS theming is disabled
+        RGB rgb = ThemeUtils.getCurrentThemeColor(IPreferenceConstants.VIEW_BACKGROUND_COLOR);
+        if(rgb != null) {
+            viewer.getControl().setBackground(new Color(rgb));
+        }
     }
     
     private void hookSelectionListener() {
@@ -414,7 +418,7 @@ implements IDiagramModelEditor, IContextProvider, ITabbedPropertySheetPageContri
      * Update Shell title bar with file name of current model
      */
     protected void updateShellTitleBarWithFileName() {
-        String appname = Platform.getProduct().getName();
+        String appname = ArchiPlugin.INSTANCE.getProductName();
         File file = getModel().getArchimateModel().getFile();
         
         if(file != null) {
@@ -1067,7 +1071,7 @@ implements IDiagramModelEditor, IContextProvider, ITabbedPropertySheetPageContri
         eCoreAdapter.remove(getModel(), getModel() != null ? getModel().getArchimateModel() : null);
         
         // Update shell text
-        getSite().getShell().setText(Platform.getProduct().getName());
+        getSite().getShell().setText(ArchiPlugin.INSTANCE.getProductName());
         
         // Disable Actions
         disableActions();

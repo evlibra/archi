@@ -48,7 +48,6 @@ modelreport(model, strategyFolder, businessFolder, applicationFolder, technology
 	<link type="text/css" rel="stylesheet" href="css/i18n.css">
 	<script type="text/javascript" src="js/model.js"></script>
 	<script type="text/javascript" src="js/url-polyfill.min.js"></script>
-	<script async src="https://hypothes.is/embed.js"></script>
 </head>
 
 <body>
@@ -66,11 +65,9 @@ modelreport(model, strategyFolder, businessFolder, applicationFolder, technology
 		</nav>
 	</div>
 
-	<div class="ui-layout-center">
-		<iframe enable-annotation name="view" src="^model.Id^/elements/model.html" scrolling="no"></iframe>
-	</div>
 
-	<div class="ui-layout-east">
+
+	<div class="ui-layout-west">
 		<!-- <iframe enable-annotation name="element" class="ui-layout-south" src="elements/empty-element.html"  scrolling="no"></iframe> -->
 		<div class="ui-layout-center">
 			<div class="panel panel-default root-panel">
@@ -91,11 +88,13 @@ modelreport(model, strategyFolder, businessFolder, applicationFolder, technology
 		</div>
 	</div>
 	
-	<div class="ui-layout-west">
-		<div class="ui-layout-center">	
-			<iframe enable-annotation name="element" src="elements/empty-element.html"  scrolling="no"></iframe>
-		</div>			
+	<div class="ui-layout-center">	
+			<iframe name="view" src="^model.Id^/elements/model.html" scrolling="no"></iframe>			
 	</div>
+	
+	<div class="ui-layout-south">
+		<iframe name="element" src="elements/empty-element.html"  scrolling="no"></iframe>	
+	</div>	
 
 	<!-- START ABOUT MODAL DIALOG -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

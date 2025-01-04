@@ -51,6 +51,60 @@ modelreport(model, strategyFolder, businessFolder, applicationFolder, technology
 </head>
 
 <body>
+	<iframe name="element" class="ui-layout-center" src="^model.Id^/elements/empty-element.html" scrolling="no"></iframe>
+
+	<div class="ui-layout-west">
+	<!--	<iframe name="element" class="ui-layout-south" src="elements/empty-element.html"  scrolling="no"></iframe> --!>
+		<div class="ui-layout-center">
+			<div class="panel panel-default root-panel">
+				<div class="panel-heading root-panel-heading">
+					<b><span class="i18n-modeltree"></span></b>
+				</div>
+				<div class="panel-body root-panel-body">
+					<b><a href="^model.Id^/elements/model.html" target="view">^model.Name;format="xml-encode"^</a></b>
+					<ul class="tree">
+					<!-- START OF STRINGTEMPLATE CODE -->
+						<li class="tree-folder ^classesFromProperties(viewsFolder)^"><span class="i18n-views"><i class="glyphicon glyphicon-triangle-right"></i> </span>
+							^expandFolder(viewsFolder, "view")^
+						</li>
+						<li class="tree-folder sorted"><span class="i18n-model_content"><i class="glyphicon glyphicon-triangle-right"></i> </span>
+							<ul>
+                                <li class="tree-folder ^classesFromProperties(strategyFolder)^"><span class="i18n-strategy"><i class="glyphicon glyphicon-triangle-right"></i> </span>
+                                    ^expandFolder(strategyFolder, "element")^
+                                </li>
+								<li class="tree-folder ^classesFromProperties(businessFolder)^"><span class="i18n-business_layer"><i class="glyphicon glyphicon-triangle-right"></i> </span>
+									^expandFolder(businessFolder, "element")^
+								</li>
+								<li class="tree-folder ^classesFromProperties(applicationFolder)^"><span class="i18n-application_layer"><i class="glyphicon glyphicon-triangle-right"></i> </span>
+									^expandFolder(applicationFolder, "element")^
+								</li>
+								<li class="tree-folder ^classesFromProperties(technologyFolder)^"><span class="i18n-technology_layer"><i class="glyphicon glyphicon-triangle-right"></i> </span>
+									^expandFolder(technologyFolder, "element")^
+								</li>
+								<li class="tree-folder ^classesFromProperties(motivationFolder)^"><span class="i18n-motivation"><i class="glyphicon glyphicon-triangle-right"></i> </span>
+									^expandFolder(motivationFolder, "element")^
+								</li>
+								<li class="tree-folder ^classesFromProperties(implementationFolder)^"><span class="i18n-implementation"><i class="glyphicon glyphicon-triangle-right"></i> </span>
+									^expandFolder(implementationFolder, "element")^
+								</li>
+								<li class="tree-folder ^classesFromProperties(otherFolder)^"><span class="i18n-connectors"><i class="glyphicon glyphicon-triangle-right"></i> </span>
+									^expandFolder(otherFolder, "element")^
+								</li>
+								<li class="tree-folder ^classesFromProperties(relationsFolder)^"><span class="i18n-relations"><i class="glyphicon glyphicon-triangle-right"></i> </span>
+									^expandFolder(relationsFolder, "element")^
+								</li>
+							</ul>
+						</li>
+
+					<!-- END OF STRINGTEMPLATE CODE -->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<iframe name="view" class="ui-layout-east" src="elements/model.html"  scrolling="no"></iframe>
+	
 	<!-- "ui-layout-north" class set (topbar) -->
 	<div class="ui-layout-north">
 		<nav class="navbar navbar-inverse">
@@ -64,37 +118,6 @@ modelreport(model, strategyFolder, businessFolder, applicationFolder, technology
 			</div>
 		</nav>
 	</div>
-
-
-
-	<div class="ui-layout-west">
-		<!-- <iframe enable-annotation name="element" class="ui-layout-south" src="elements/empty-element.html"  scrolling="no"></iframe> -->
-		<div class="ui-layout-center">
-			<div class="panel panel-default root-panel">
-				<div class="panel-heading root-panel-heading">
-					<b><span class="i18n-modeltree"></span></b>
-				</div>
-				<div class="panel-body root-panel-body">
-					<b><a href="^model.Id^/elements/model.html" target="view">^model.Name;format="xml-encode"^</a></b>
-					<ul class="tree">
-					<!-- START OF STRINGTEMPLATE CODE -->
-						<li class="tree-folder ^classesFromProperties(viewsFolder)^"><span class="i18n-views"><i class="glyphicon glyphicon-triangle-right"></i> </span>
-							^expandFolder(viewsFolder, "view")^
-						</li>
-					<!-- END OF STRINGTEMPLATE CODE -->
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="ui-layout-center">	
-			<iframe name="view" src="^model.Id^/elements/model.html" scrolling="no"></iframe>			
-	</div>
-	
-	<div class="ui-layout-south">
-		<iframe name="element" src="elements/empty-element.html"  scrolling="no"></iframe>	
-	</div>	
 
 	<!-- START ABOUT MODAL DIALOG -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

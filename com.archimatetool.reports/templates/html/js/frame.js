@@ -221,5 +221,6 @@ $(document).ready(function() {
 				setZoom()
 			}
 		})
+	document.querySelector('.root-panel-body map area').onClick = function(e) { console.log('click ->>> ', e, e.target) }		
 	}
 });
